@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI_BSC.AppService.AppServicesClasses;
+using WebAPI_BSC.AppService.IAppServices;
+using WebAPI_BSC.Controllers;
 
 namespace WebAPI_BSC
 {
@@ -29,6 +32,7 @@ namespace WebAPI_BSC
         public void ConfigureServices(IServiceCollection services)
         {
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+            services.AddScoped<IMain, MainService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAuthentication(x =>
@@ -49,6 +53,8 @@ namespace WebAPI_BSC
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -25,14 +25,20 @@ namespace WebAPI_BSC.ClientModels
     }
     public class ListViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Format { get; set; }
-        public string Key { get; set; }
-        public int Code { get; set; }
-        public int GroupId { get; set; }
-        public string GroupKey { get; set; }
-        public string GroupName { get; set; }
+        public string col1 { get; set; }
+        public string col2 { get; set; }
+        public string col3 { get; set; }
+        public string col4 { get; set; }
+        public string col5 { get; set; }
+        public string col6 { get; set; }
+        public string col7 { get; set; }
+        public string col8 { get; set; }
+        public string col9 { get; set; }
+        public string col10 { get; set; }
+        public string col11 { get; set; }
+        public int col12 { get; set; }
+        public List<string> ColumnNamesENG { get; set; }
+        public List<string> ColumnNemesGE { get; set; }
 
     }
 

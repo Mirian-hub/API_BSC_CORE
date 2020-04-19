@@ -28,7 +28,7 @@ namespace WebAPI_BSC.Controllers
                 SqlDbType = System.Data.SqlDbType.Xml,
                 Direction = System.Data.ParameterDirection.Output
             };
-
+                
             using (var context = new BSCSolution257Context())
             {
                 var res =  context.Database.ExecuteSqlCommand("WebShellUser @ShellUserKey, @ShellUserPassword, @xmlOut OUTPUT", userKey, userPassword, xmlOut);

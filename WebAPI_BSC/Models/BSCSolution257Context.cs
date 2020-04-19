@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Xml;
 using WebAPI_BSC.ClientModels;
-
+using WebAPI_BSC.ClientModels.OperationSpecificModels;
 namespace WebAPI_BSC.Models
 {
     public partial class BSCSolution257Context : DbContext
@@ -16,6 +16,9 @@ namespace WebAPI_BSC.Models
             : base(options)
         {
         }
+       // public DbQuery<Object> GenericModel { get; set; }
+
+        public DbQuery<StockSupplierModel> StockSupplierModels { get; set; }
         public DbQuery<GroupModel> GroupModels { get; set; }
         public virtual DbSet<CashEntryLineStatusTable> CashEntryLineStatusTable { get; set; }
         public virtual DbSet<CashEntryLineTable> CashEntryLineTable { get; set; }
