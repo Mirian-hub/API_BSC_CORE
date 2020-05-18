@@ -33,6 +33,7 @@ namespace WebAPI_BSC
         {
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
             services.AddScoped<IMain, MainService>();
+            services.AddScoped<IInnerListViewService, InnerListViewService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAuthentication(x =>

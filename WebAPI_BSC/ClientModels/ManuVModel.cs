@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPI_BSC.ClientModels
+namespace WebAPI_BSC.Controllers
 {
     public class ManuVModel
     {

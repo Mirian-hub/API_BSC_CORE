@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPI_BSC.ClientModels.OperationSpecificModels
+namespace WebAPI_BSC.Controllers.OperationSpecificModels
 {
     public class StockSupplierModel
     {

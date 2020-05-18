@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI_BSC.ClientModels;
 
-namespace WebAPI_BSC.ClientModels
+namespace WebAPI_BSC.Controllers
 {
     public class MainModel
     {
@@ -31,5 +32,13 @@ namespace WebAPI_BSC.ClientModels
         public string GroupName { get; set; }
         public List<string> colNames { get; set; }
         public int operationId { get; set; } 
+        public List<string> EditPagesSource { get; set; }
+        public string ShellPageKey { get; set; }
+        public string ExecutedQuery { get; set; }
+        public List<string> DefaultColNames { get; set; }
+        public List<ChildTemplateModel> ChildTemplates { get; set; }
+        public List<bool> ColumnIsEditable { get; set; }
+        public List<string> ColTemplateTypes { get; set; }
+        public List<bool> colIsSimple { get; set; }
     }
 }

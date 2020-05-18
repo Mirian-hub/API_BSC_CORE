@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using WebAPI_BSC.ClientModels;
+using WebAPI_BSC.Controllers;
 using WebAPI_BSC.Models;
 
 namespace WebAPI_BSC.Controllers

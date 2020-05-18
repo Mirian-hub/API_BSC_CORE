@@ -7,29 +7,29 @@ using System.Xml;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPI_BSC.ClientModels;
+using WebAPI_BSC.Controllers;
 using WebAPI_BSC.Models;
 using WebAPI_BSC.AppService.IAppServices;
 using System.Xml.Linq;
 
 namespace WebAPI_BSC.Controllers
 {
-    [Route("api/[controller]/{operationId}")]
+    [Route("api/[controller]/{operationId}/{editPageId}/{selectedRowId}")]
     [ApiController]
     public class ListViewController : ControllerBase
     {
-        private readonly IMain _mainSerice;
+        private readonly IMain _mainService;
         public ListViewController(IMain main)
         {
-            _mainSerice = main;
-        }
+            _mainService = main;
+        }   
         [HttpGet]
-        public List<MainModel> GetListView(int  operationId, int? editPageNumber)
+        public List<MainModel> GetListView(int  operationId, int editPageId, int selectedRowId)
         {
             int opId = operationId;
             SqlParameter userId = new SqlParameter("@ShellUserID",'0' );
             SqlParameter _operationId = new SqlParameter("@ShellOperationID",opId);
-            SqlParameter xmlOut = new SqlParameter
+            SqlParameter xmlOut = new SqlParameter  
             {
                 ParameterName = "@xmlOut",
                 SqlDbType = System.Data.SqlDbType.Xml,
@@ -46,6 +46,7 @@ namespace WebAPI_BSC.Controllers
 
             using (var context = new BSCSolution257Context())
             {
+
                 var res = context.Database.ExecuteSqlCommand("WebShellTerm @ShellUserID, @ShellOperationID, @xmlOut OUTPUT", userId, _operationId, xmlOut);
                 groupModels = context.GroupModels.FromSql($"select * from ShellTermGroupList({opId})").ToList();
                 context.Database.ExecuteSqlCommand("WebShellTerm_ControlList @ShellUserID, @tempXmlOut OUTPUT", userId, templateXmlOut);
@@ -60,10 +61,13 @@ namespace WebAPI_BSC.Controllers
 
             var docTemplate = XDocument.Parse(docTemp.OuterXml);
 
+            string shellPageKey = XDocument.Parse(doc.OuterXml).Descendants("ShellPageKey").First().Value;
+            var listViewSourceName = editPageId<0? doc.GetElementsByTagName("ShellPageSource")[0].InnerText: shellPageKey + "Edit"+editPageId;
+            //var listViewSourceName1 = doc.GetElementsByTagName("ShellPageSource")[0].InnerText;
+            //var listViewSourceName2 = XDocument.Parse(doc.OuterXml).Descendants("ShellPageKey").First().Value + "Edit"+editPageId;
 
-            var listViewSourceName = doc.GetElementsByTagName("ShellPageSource")[0].InnerText;
-
-            return _mainSerice.GetListViewData(opId, listViewSourceName,groupModels, docTemplate);
+            var finalRes = _mainService.GetListViewData(opId, listViewSourceName, groupModels, docTemplate, selectedRowId, shellPageKey, editPageId);
+            return finalRes;
             }
 
         }

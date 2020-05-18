@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Xml;
-using WebAPI_BSC.ClientModels;
-using WebAPI_BSC.ClientModels.OperationSpecificModels;
+using WebAPI_BSC.Controllers;
+using WebAPI_BSC.Controllers.OperationSpecificModels;
 namespace WebAPI_BSC.Models
 {
     public partial class BSCSolution257Context : DbContext

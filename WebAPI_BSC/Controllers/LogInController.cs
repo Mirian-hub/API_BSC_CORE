@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAPI_BSC.Models;
 using System.Xml;
 using System.Data.SqlClient;
-using WebAPI_BSC.ClientModels;
+using WebAPI_BSC.Controllers;
 
 namespace WebAPI_BSC.Controllers
 {
